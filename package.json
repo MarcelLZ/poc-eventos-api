@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha src/test --require babel-register --recursive --watch --reporter spec || exit 0"
   },
   "repository": {
     "type": "git",
