@@ -6,24 +6,23 @@ import config from '../config'
 mongoose.Promise = bluebird
 
 // Function to create url connection
-const _connection = (variables) => {
+const _connection = variables => {
+  const username = variables.MONGO_USERNAME || config.mongo.username,
+    password = variables.MONGO_PASSWORD || config.mongo.password,
+    host = variables.MONGO_HOST || config.mongo.host,
+    port = variables.MONGO_PORT || config.mongo.port,
+    database = variables.MONGO_DATABASE || config.mongo.database,
+    auth = username ? `${username}:${password}@` : ''
 
-	const username = variables.MONGO_USERNAME || config.mongo.username,
-		password = variables.MONGO_PASSWORD || config.mongo.password,
-		host = variables.MONGO_HOST || config.mongo.host,
-		port = variables.MONGO_PORT || config.mongo.port,
-		database = variables.MONGO_DATABASE || config.mongo.database,
-		auth = username ? `${username}:${password}@` : ''
-
-	return `mongodb://${auth}${host}:${port}/${database}`
+  return `mongodb://${auth}${host}:${port}/${database}`
 }
 
 const _urlConnection = _connection(process.env)
 
 // Init connection
 mongoose.connect(_urlConnection, {
-	useMongoClient: true,
-	promiseLibrary: bluebird
+  useMongoClient: true,
+  promiseLibrary: bluebird
 })
 
 const database = mongoose.connection

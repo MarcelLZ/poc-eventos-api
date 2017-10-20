@@ -1,18 +1,19 @@
-import mongoose from '../database';
+import mongoose from '../database'
 
-// Event model - Simple schema and no validations 
+// Event model - Simple schema and no validations
 const eventModel = mongoose.model('events', {
-  "title": String,
-  "date": Object,
-  "innerLink": String,
-  "link": String,
-  "price": String,
-  "location": Object,
-  "image": String,
-  "shortDescription": String,
-});
+  'title': String,
+  'date': Object,
+  'innerLink': String,
+  'link': String,
+  'price': String,
+  'location': Object,
+  'image': String,
+  'shortDescription': String
+})
 
-export default eventModel;
+export default eventModel
+
 /**
  * Example
  * {

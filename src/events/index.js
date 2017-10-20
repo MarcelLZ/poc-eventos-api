@@ -1,1 +1,1 @@
-export { default as eventModel } from './model';
+export { default as eventModel } from './model'
