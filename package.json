@@ -4,6 +4,7 @@
   "description": "This is just a simple POC",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,19 @@
   "bugs": {
     "url": "https://github.com/MarcelLZ/poc-eventos-api/issues"
   },
-  "homepage": "https://github.com/MarcelLZ/poc-eventos-api#readme"
+  "homepage": "https://github.com/MarcelLZ/poc-eventos-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1",
+    "standard": "^10.0.3"
+  }
 }
