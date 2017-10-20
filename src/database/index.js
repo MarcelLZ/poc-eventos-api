@@ -20,7 +20,7 @@ const _connection = (variables) => {
 
 const _urlConnection = _connection(process.env)
 
-// Init connect
+// Init connection
 mongoose.connect(_urlConnection, {
 	useMongoClient: true,
 	promiseLibrary: bluebird
