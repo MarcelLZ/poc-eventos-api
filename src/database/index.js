@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 import bluebird from 'bluebird'
 import config from '../config'
 
@@ -31,4 +31,5 @@ database.on('error', () => console.log(`Failed to connect : ${_urlConnection}`))
 database.once('open', () => console.log(`Connected : ${_urlConnection}`))
 
 // Export instance
+export { Schema }
 export default mongoose
