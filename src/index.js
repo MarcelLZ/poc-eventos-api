@@ -9,8 +9,6 @@ express()
   .use('*', cors({ origin: '*' }))
   .use(bodyParser.urlencoded({ extended: false }))
   .use(bodyParser.json())
-
   .use('/', api)
   .get('/', (request, response) => response.json({ healthCheck: true }))
-
   .listen(PORT, () => console.log(`Running! Access http://localhost:${PORT}`))

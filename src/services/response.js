@@ -1,17 +1,25 @@
-export function success (response, payload = {}, statusCode = 200) {
-  return response
-    .status(statusCode || 200)
-    .json(payload)
+export function success (response, statusCode = 200) {
+  return function (payload) {
+    return response
+      .status(statusCode)
+      .json(payload)
+  }
 }
 
-export function error (response, payload = {}, statusCode = 500) {
-  return response
-    .status(statusCode)
-    .json(payload)
+export function error (response, statusCode = 500) {
+  return function (payload) {
+    return response
+      .status(statusCode)
+      .json(payload)
+  }
 }
 
 export function notFound (response) {
-  return response
-    .status(404)
-    .end()
+  return function (payload) {
+    if (payload) return payload
+
+    return response
+      .status(404)
+      .end()
+  }
 }
