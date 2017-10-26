@@ -1,4 +1,4 @@
-import mongoose, { Schema } from '../../database'
+import mongoose, { Schema } from '../../services/database'
 
 const eventSchema = new Schema({
   title: { type: String, required: true },

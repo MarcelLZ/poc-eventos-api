@@ -1,4 +1,4 @@
-import mongoose, { Schema } from '../../database'
+import mongoose, { Schema } from '../../services/database'
 
 const userSchema = new Schema({
   name: { type: String, required: true },

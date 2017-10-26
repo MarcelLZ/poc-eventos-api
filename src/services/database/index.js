@@ -1,18 +1,18 @@
 import mongoose, { Schema } from 'mongoose'
 import bluebird from 'bluebird'
-import config from '../config'
+import config from './configs'
 
 // Set mongoose promise
 mongoose.Promise = bluebird
 
 // Function to create url connection
 const _connection = variables => {
-  const username = variables.MONGO_USERNAME || config.mongo.username,
-    password = variables.MONGO_PASSWORD || config.mongo.password,
-    host = variables.MONGO_HOST || config.mongo.host,
-    port = variables.MONGO_PORT || config.mongo.port,
-    database = variables.MONGO_DATABASE || config.mongo.database,
-    auth = username ? `${username}:${password}@` : ''
+  const username = variables.MONGO_USERNAME || config.mongo.username
+  const password = variables.MONGO_PASSWORD || config.mongo.password
+  const host = variables.MONGO_HOST || config.mongo.host
+  const port = variables.MONGO_PORT || config.mongo.port
+  const database = variables.MONGO_DATABASE || config.mongo.database
+  const auth = username ? `${username}:${password}@` : ''
 
   return `mongodb://${auth}${host}:${port}/${database}`
 }
