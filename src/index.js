@@ -4,7 +4,7 @@ import cors from 'cors'
 import passport from './services/passport'
 import api from './api'
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 express()
   .use('*', cors({ origin: '*' }))

@@ -1,4 +1,4 @@
 export default {
-  CLIENT_ID: '0e0f76edaf7a63286fdb',
-  CLIENT_SECRET: 'c39bf1398cb77682caa7a58e032ae0435145c368'
+  CLIENT_ID: '29186b8e25b21408ef61',
+  CLIENT_SECRET: 'c5c40d59df26aeaddb9ceae7e4943bf8c172b3d3'
 }

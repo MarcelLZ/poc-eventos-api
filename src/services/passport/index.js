@@ -5,7 +5,7 @@ import config from './config'
 passport.use(new GithubStrategy({
   clientID: config.CLIENT_ID,
   clientSecret: config.CLIENT_SECRET,
-  callbackURL: 'https://poc-eventos-api.now.sh/auth/github/callback'
+  callbackURL: 'http://localhost:3002/auth/callback'
 }, (accessToken, refreshToken, profile, done) =>
   done(null, {
     accessToken,

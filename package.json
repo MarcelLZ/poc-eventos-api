@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/MarcelLZ/poc-eventos-api#readme",
   "dependencies": {
+    "axios": "^0.17.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "bodymen": "^1.0.3",

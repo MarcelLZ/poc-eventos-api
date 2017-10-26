@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import passport from '../../services/passport'
-import { githubAuthenticationCallback } from './controller'
+import { githubAuthenticationCallback, auth } from './controller'
 
 const router = new Router()
 
@@ -17,5 +17,7 @@ router.get(
   passport.authenticate('github', { failureRedirect: '/login' }),
   githubAuthenticationCallback
 )
+
+router.post('/teste',auth)
 
 export default router

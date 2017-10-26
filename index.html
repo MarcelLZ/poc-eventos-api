@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Github Auth</title>
+</head>
+
+<body>
+	<style>
+		html,
+		body,
+		.container {
+			font-family: 'calibri';
+			height: 100%
+		}
+
+		.container {
+			display: flex;
+			align-items: center;
+			flex-flow: column wrap;
+			justify-content: center;
+		}
+
+		.btn {
+			background: black;
+			color: white;
+			border: 0;
+			font-size: 20px;
+			padding: 1rem;
+			text-transform: uppercase;
+			cursor: pointer;
+		}
+	</style>
+	<div class="container">
+		<h2 class="title"></h2>
+		<button class="btn">Authenticate</button>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>
+	<script>
+		class GitHubAuth {
+			constructor(clientId, callbackUrl) {
+				this.githubUrl = 'https://github.com/login/oauth/authorize?'
+				this.popup = null
+				this.clientId = clientId
+				this.callbackUrl = callbackUrl
+			}
+
+			init() {
+				this.openPopup()
+				this.polling()
+			}
+
+			openPopup() {
+				const url = this.createUrl()
+				const height = 500
+				const width = 800
+				const left = (window.screen.width / 2) - (width / 2)
+				const top = (window.screen.height / 2) - (height / 2)
+				this.popup = window.open(url, '', `width=${width}, height=${height}, left=${left}, top=${top}`)
+			}
+
+			createUrl() {
+				return `${this.githubUrl}?response_type=code&client_id=${this.clientId}&redirectUri=${this.callbackUrl}&scope=user:email`
+			}
+
+			polling() {
+				this.pollingInterval = setInterval(() => {
+					try {
+						const url = this.popup.location.href
+						const currentPath = this.extractUri(url)
+						if (currentPath === this.callbackUrl) {
+							this.authenticateApi(url)
+							this.popup.close()
+							clearInterval(this.pollingInterval)
+						}
+					} catch (error) {
+						//Ignorar o erro blocked frame
+					}
+				})
+			}
+
+			extractUri(url) {
+				return url.split('?')[0]
+			}
+
+			extractCodeParam(url) {
+				return url.split('?')[1].split('=')[1]
+			}
+
+			authenticateApi(url) {
+				const code = this.extractCodeParam(url)
+				axios.post('http://localhost:3001/auth/teste', {
+					code
+				}).then(response => {
+					const $title = document.querySelector('.title')
+					$title.innerHTML = `Token:${response.data.token}`
+				}).catch(console.log)
+			}
+		}
+
+		const $button = document.querySelector('.btn')
+		$button.addEventListener('click', function () {
+			const githubAuth = new GitHubAuth('29186b8e25b21408ef61', 'http://localhost:3000/auth/callback')
+			githubAuth.init()
+		})
+	</script>
+
+</body>
+
+</html>
