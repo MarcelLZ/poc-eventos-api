@@ -7,7 +7,10 @@ const router = new Router()
 /**
  * Essa rota deveria redirecionar o usuário para a página do github
  */
-router.get('/', passport.authenticate('github', { scope: [ 'user:email' ] }))
+router.get(
+  '/',
+  passport.authenticate('github', { scope: [ 'user:email' ] })
+)
 
 /**
  * Essa url o github chama para nos devolver algumas infos do usuário
@@ -18,6 +21,9 @@ router.get(
   githubAuthenticationCallback
 )
 
-router.post('/teste',auth)
+/**
+ * Rota de autenticação
+ */
+router.post('/teste', auth)
 
 export default router
